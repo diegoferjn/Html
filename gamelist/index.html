@@ -1,0 +1,48 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Variables CSS — Demo</title>
+    <link rel="stylesheet" href="styles/main.css" />
+  </head>
+  <body>
+    <main class="container">
+      <h1>Variables CSS en acción</h1>
+      <p class="lead">
+        Esta página de prueba aplica variables de <strong>color</strong>, <strong>tipografía</strong>,
+        <strong>espaciado</strong>, <strong>radios</strong> y <strong>sombras</strong> definidas en <code>:root</code>.
+      </p>
+
+      <p style="margin-bottom: var(--space-4);">
+        <a class="btn" href="#">Botón principal (usa --brand)</a>
+        <a class="btn btn--alt" href="#" style="margin-left: var(--space-2);">
+          Botón alternativo (usa --brand-alt)
+        </a>
+      </p>
+
+      <section class="grid">
+        <article class="card">
+          <h3>PlayStation <span class="badge badge--ps">PS</span></h3>
+          <p>Tarjeta con color de plataforma usando <code>--platform-playstation</code>.</p>
+        </article>
+        <article class="card">
+          <h3>Xbox <span class="badge badge--xbox">Xbox</span></h3>
+          <p>Tarjeta con color de plataforma usando <code>--platform-xbox</code>.</p>
+        </article>
+        <article class="card">
+          <h3>Nintendo <span class="badge badge--ntd">Nin</span></h3>
+          <p>Tarjeta con color de plataforma usando <code>--platform-nintendo</code>.</p>
+        </article>
+        <article class="card">
+          <h3>PC <span class="badge badge--pc">PC</span></h3>
+          <p>Tarjeta con color de plataforma usando <code>--platform-pc</code>.</p>
+        </article>
+        <article class="card">
+          <h3>Móvil <span class="badge badge--mob">Mob</span></h3>
+          <p>Tarjeta con color de plataforma usando <code>--platform-mobile</code>.</p>
+        </article>
+      </section>
+    </main>
+  </body>
+</html>
