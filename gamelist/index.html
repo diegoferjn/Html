@@ -3,21 +3,61 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Modelo de Caja — border-box</title>
+    <title>Mi Colección</title>
     <link rel="stylesheet" href="styles/main.css" />
   </head>
   <body>
     <main>
-      <section class="caja-prueba">
-        <h2>Caja de prueba (ancho 300px)</h2>
-        <p>
-          Esta caja tiene <strong>width: 300px</strong>, con padding y border.
-          Con <code>box-sizing: border-box</code> el ancho total se mantiene en 300px
-          aunque cambien el padding o el borde.
-        </p>
+      <section id="coleccion">
+        <h1>Mi Colección</h1>
+        <p>Tarjetas de juegos con título, plataforma, metadatos y descripción.</p>
+
+        <div class="cards">
+          <article class="card">
+            <h2 class="card__title">Astro Quest</h2>
+            <span class="card__badge">PC</span>
+            <ul class="card__meta">
+              <li>Año: 2023</li>
+              <li>Género: Aventura</li>
+              <li>PEGI: 12</li>
+            </ul>
+            <p class="card__desc">Explora planetas y resuelve puzles en una aventura espacial.</p>
+          </article>
+
+          <article class="card">
+            <h2 class="card__title">Street Wheels</h2>
+            <span class="card__badge">PlayStation</span>
+            <ul class="card__meta">
+              <li>Año: 2022</li>
+              <li>Género: Carreras</li>
+              <li>PEGI: 7</li>
+            </ul>
+            <p class="card__desc">Conduce a toda velocidad por circuitos urbanos.</p>
+          </article>
+
+          <article class="card">
+            <h2 class="card__title">Kingdom Falls</h2>
+            <span class="card__badge">Nintendo</span>
+            <ul class="card__meta">
+              <li>Año: 2021</li>
+              <li>Género: RPG</li>
+              <li>PEGI: 12</li>
+            </ul>
+            <p class="card__desc">Defiende el reino con tu equipo de héroes.</p>
+          </article>
+
+          <article class="card">
+            <h2 class="card__title">Battle Ops</h2>
+            <span class="card__badge">Xbox</span>
+            <ul class="card__meta">
+              <li>Año: 2024</li>
+              <li>Género: Acción</li>
+              <li>PEGI: 16</li>
+            </ul>
+            <p class="card__desc">Acción táctica con misiones cooperativas.</p>
+          </article>
+        </div>
       </section>
-      <p>Texto extra para poder hacer un poco de scroll y ver el comportamiento.</p>
-      <p>Otro párrafo de ejemplo.</p>
     </main>
   </body>
 </html>

@@ -1,37 +1,50 @@
-/* Basado en tus manuales:
-   - Sintaxis y selectores CSS
-   - Colores, fuentes, texto, margin/padding
-   - Modelo de caja y box-sizing */
+/* Basado en tus manuales: reset mínimo, tipografía, colores, display, margin/padding */
+html, body, h1, h2, p, ul, li { margin: 0; padding: 0; }
+*, *::before, *::after { box-sizing: border-box; }
 
-/* Reset mínimo y fuente básica */
-html, body, h1, h2, p { margin: 0; padding: 0; }
 body {
-  font-family: Arial, sans-serif;   /* Manual de estilos de texto */
-  color: #222222;                   /* Hex: Aplicación de colores */
+  font-family: Arial, sans-serif;   /* Manual: fuentes */
+  color: #222;                      /* Manual: color */
   line-height: 1.5;
-  padding: 10px;                    /* un poco de respiración general */
+  padding: 16px;
+  background: #f5f7fb;
 }
 
-/* ACTIVAR border-box para todo (según manual del modelo de caja) */
-*, *::before, *::after {
-  box-sizing: border-box;
+/* Sección */
+#coleccion > h1 { font-size: 24px; margin: 12px 0; }
+#coleccion > p  { margin: 0 0 16px 0; color: #444; }
+
+
+
+
+/* Tarjeta: presentacional */
+.card {
+  display: inline-block;         /* se colocan una al lado de otra y saltan si no caben */
+  vertical-align: top;
+  width: 280px;                  /* ancho fijo para simular columnas */
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px;
+  margin: 8px;                   /* separación “tipo gap” */
+  box-shadow: 0 2px 8px rgba(0,0,0,.06);
 }
 
-/* Caja de prueba del ejercicio */
-.caja-prueba {
-  width: 300px;                   /* Ancho objetivo */
-  background: #eef6ff;            /* Color de fondo */
-  margin: 20px 0;                 /* Margin: espacio externo (Manual I) */
-  padding: 16px;                  /* Padding: espacio interno */
-  border: 2px solid #60a5fa;      /* Borde: ancho, estilo, color */
-  border-radius: 10px;            /* Esquina redondeada (propiedad básica) */
+.card__title { font-size: 18px; margin-bottom: 8px; }
+.card__badge {
+  display: inline-block;         /* manual: inline-block permite width/height */
+  background: #0ea5e9;
+  color: #fff;
+  padding: 2px 8px;
+  border-radius: 999px;
+  font-size: 12px;
+  margin-bottom: 8px;
 }
 
-.caja-prueba h2 {
-  font-size: 20px;
-  margin-bottom: 10px;
-}
+.card__meta { list-style: none; margin: 8px 0; }
+.card__meta li { font-size: 14px; margin-bottom: 4px; }
 
-.caja-prueba p {
-  font-size: 16px;
-}
+.card__desc { font-size: 14px; color: #333; }
+
+/* Hover simple (interactividad básica) */
+.card:hover { box-shadow: 0 6px 16px rgba(0,0,0,.1); }
