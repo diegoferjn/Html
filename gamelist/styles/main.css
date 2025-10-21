@@ -1,50 +1,99 @@
-/* Basado en tus manuales: reset mínimo, tipografía, colores, display, margin/padding */
-html, body, h1, h2, p, ul, li { margin: 0; padding: 0; }
+/* Reset básico y tipografía */
+html, body, h1, h2, h3, p, ul, li { margin: 0; padding: 0; }
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
-  font-family: Arial, sans-serif;   /* Manual: fuentes */
-  color: #222;                      /* Manual: color */
+  font-family: Arial, sans-serif;
+  color: #222;
   line-height: 1.5;
   padding: 16px;
   background: #f5f7fb;
 }
 
-/* Sección */
-#coleccion > h1 { font-size: 24px; margin: 12px 0; }
-#coleccion > p  { margin: 0 0 16px 0; color: #444; }
+/* Header con flex para separar logo y nav */
+.site-header {
+  display: flex;                 /* Flexbox activado */
+  justify-content: space-between;/* Alineación eje principal */
+  align-items: center;           /* Alineación eje cruzado */
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  padding: 10px 12px;
+  margin-bottom: 16px;
+}
 
+.nav a {
+  text-decoration: none;
+  color: #222;
+  margin-left: 12px;
+}
 
+/* Secciones */
+.site-main section { background: #fff; border: 1px solid #e5e7eb; padding: 12px; margin-bottom: 16px; border-radius: 10px; }
+.site-main h2 { font-size: 20px; margin-bottom: 8px; }
+.site-main p  { margin-bottom: 8px; }
 
+/* Cards con Flexbox + wrap (sin media query) */
+.cards {
+  display: flex;         /* Flexbox */
+  flex-wrap: wrap;       /* Envoltura */
+  /* sin gap (no lo hemos visto); usamos margin en .card */
+}
 
-/* Tarjeta: presentacional */
 .card {
-  display: inline-block;         /* se colocan una al lado de otra y saltan si no caben */
-  vertical-align: top;
-  width: 280px;                  /* ancho fijo para simular columnas */
+  width: 280px;                  /* ancho fijo para que “salten” en varias filas */
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   padding: 12px;
-  margin: 8px;                   /* separación “tipo gap” */
+  margin: 8px;                   /* separación entre tarjetas */
   box-shadow: 0 2px 8px rgba(0,0,0,.06);
 }
 
 .card__title { font-size: 18px; margin-bottom: 8px; }
-.card__badge {
-  display: inline-block;         /* manual: inline-block permite width/height */
-  background: #0ea5e9;
-  color: #fff;
-  padding: 2px 8px;
-  border-radius: 999px;
-  font-size: 12px;
-  margin-bottom: 8px;
+.badge { display: inline-block; background: #0ea5e9; color: #fff; padding: 2px 8px; border-radius: 999px; font-size: 12px; margin-bottom: 8px; }
+.meta { list-style: none; margin: 8px 0; }
+.meta li { font-size: 14px; margin-bottom: 4px; }
+.desc { font-size: 14px; }
+
+/* Picks en fila con flex (se apilan cuando no caben por wrap) */
+.picks-row { display: flex; flex-wrap: wrap; }
+.pick {
+  background: #eef6ff;
+  border: 1px solid #60a5fa;
+  border-radius: 8px;
+  padding: 8px 12px;
+  margin: 4px;
 }
 
-.card__meta { list-style: none; margin: 8px 0; }
-.card__meta li { font-size: 14px; margin-bottom: 4px; }
+/* Formularios básicos y accesibles */
+form { margin-top: 8px; }
+label { display: block; font-size: 14px; margin-bottom: 4px; }
+input[type="email"] {
+  display: block;
+  width: 100%;
+  padding: 10px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  background: #fff;
+  margin-bottom: 8px;
+}
+input[type="email"]:focus {
+  outline: none;
+  border-color: #0ea5e9;
+  box-shadow: 0 0 0 3px rgba(14,165,233,.2);
+}
+button {
+  padding: 10px 14px;
+  border: 1px solid #0ea5e9;
+  background: #0ea5e9;
+  color: #fff;
+  border-radius: 8px;
+  cursor: pointer;
+}
+button:hover { box-shadow: 0 4px 12px rgba(14,165,233,.25); }
 
-.card__desc { font-size: 14px; color: #333; }
-
-/* Hover simple (interactividad básica) */
-.card:hover { box-shadow: 0 6px 16px rgba(0,0,0,.1); }
+.site-footer {
+  text-align: center;
+  color: #6b7280;
+  margin-top: 16px;
+}
