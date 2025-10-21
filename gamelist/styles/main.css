@@ -1,72 +1,38 @@
-/*
-==========================================
-Archivo: styles/main.css
-Secciones:
-  1) Reset CSS (básico)
-  2) Variables (:root)
-  3) Modelo de caja (box-sizing)
-  4) Estilos de prueba (demo)
-==========================================
-*/
+/* Sintaxis y selectores según Manual II; estilos básicos según Manual I */
 
-/* 1) RESET CSS (básico) */
-*,
-*::before,
-*::after { box-sizing: inherit; }
-
-html, body,
-h1,h2,h3,h4,h5,h6,
-p,figure,blockquote,dl,dd { margin: 0; padding: 0; }
-
-body { min-height: 100vh; line-height: 1.5; }
-
-/* 2) VARIABLES (:root) */
-:root{
-  /* Tipografía y colores base */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --text: #222;
-  --surface: #ffffff;
-  --surface-2: #f5f7fb;
-  --border: #e5e7eb;
-
-  /* Escala de espaciado */
-  --space-2: 0.5rem;   /* 8px  */
-  --space-4: 1rem;     /* 16px */
-  --space-6: 1.5rem;   /* 24px */
-  --space-8: 2rem;     /* 32px */
-  --space-xl: 2.5rem;  /* 40px  ==> usada en el ejercicio */
+/* Estilos generales de texto y colores */
+body {
+  font-family: Arial, sans-serif;      /* Manual I: font-family */
+  color: #222222;                      /* Manual I: color (hex) */
+  margin: 0;                           /* Manual I: margin/padding */
+  padding: 0;
 }
 
-/* 3) MODELO DE CAJA: reforzar box-sizing */
-/* Actívalo/desactívalo para el experimento */
-html { box-sizing: border-box; }
-/* Para probar diferencias, comenta temporalmente la línea anterior:
-   html { box-sizing: border-box; }
-*/
+/* Encabezados y párrafos (Manual I: font-size, font-weight, text-align) */
+h1 { font-size: 24px; font-weight: bold; text-align: left; margin: 20px; }
+h2 { font-size: 20px; margin: 20px; }
+p  { font-size: 16px; margin: 20px; }
 
-/* 4) ESTILOS DE PRUEBA */
-body{
-  font-family: var(--font-sans);
-  color: var(--text);
-  background: var(--surface-2);
+/* Header, Main y Footer (elementos semánticos presentados en tus manuales) */
+header {
+  background: #f0f4ff;                 /* color por nombre/hex (Manual I) */
+  padding: 10px;                       /* padding (Manual I) */
 }
 
-.container{
-  max-width: 960px;
-  margin: var(--space-8) auto;
-  padding: var(--space-6);
-  background: var(--surface);
-  border: 1px solid var(--border);
+nav a {
+  margin-right: 10px;                  /* separación simple */
+  text-decoration: none;               /* básico de texto */
+  color: #222222;
 }
 
-/* Elemento de prueba del ejercicio */
-.box-demo{
-  width: 300px;                 /* El ancho total debe mantenerse en 300px */
-  background: #eef6ff;
-  margin: var(--space-4) 0;
-  padding: var(--space-4);      /* luego súbelo a var(--space-xl) en la prueba */
-  border: 2px solid #60a5fa;    /* luego súbelo a 4px en la prueba */
-  border-radius: 10px;
+main {
+  background: #ffffff;
+  padding: 10px;                       /* padding (Manual I) */
+  /* No uso max-width ni centrado con margin:auto porque no están explicados */
 }
 
-.box-demo h2{ margin-bottom: var(--space-2); font-size: 1.125rem; }
+footer {
+  background: #eeeeee;
+  padding: 10px;
+  text-align: center;                  /* Manual I: text-align */
+}
