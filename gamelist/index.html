@@ -3,67 +3,59 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Flexbox mínimo viable</title>
+    <title>Gamelist — Accesibilidad mínima</title>
     <link rel="stylesheet" href="styles/main.css" />
   </head>
   <body>
-    <header class="site-header">
-      <h1>Gamelist</h1>
-      <nav class="nav">
-        <a href="#">Inicio</a>
-        <a href="#">Juegos</a>
-        <a href="#">Contacto</a>
+    <!-- Enlace de salto (mejora teclado) -->
+    <a class="skip-link" href="#inicio">Saltar al contenido</a>
+
+    <!-- Navegación accesible -->
+    <header>
+      <nav class="site-nav" role="navigation" aria-label="Navegación principal">
+        <ul>
+          <li><a href="#inicio">Inicio</a></li>
+          <li><a href="#coleccion">Mi Colección</a></li>
+          <li><a href="#boletin">Boletín</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
       </nav>
     </header>
 
-    <main class="site-main">
-      <!-- Colección de tarjetas -->
-      <section id="coleccion">
-        <h2>Mi Colección</h2>
+    <!-- Secciones con IDs únicos -->
+    <main id="inicio">
+      <section class="section" id="coleccion">
+        <h1>Mi Colección</h1>
         <p>Tarjetas de juegos con título, plataforma, metadatos y descripción.</p>
 
         <div class="cards">
           <article class="card">
-            <h3 class="card__title">Astro Quest</h3>
-            <span class="badge">PC</span>
-            <ul class="meta">
-              <li>Año: 2023</li><li>Género: Aventura</li><li>PEGI: 12</li>
+            <h2>Astro Quest</h2>
+            <p><strong>Plataforma:</strong> PC</p>
+            <ul>
+              <li>Año: 2023</li>
+              <li>Género: Aventura</li>
+              <li>PEGI: 12</li>
             </ul>
-            <p class="desc">Explora planetas y resuelve puzles.</p>
+            <p>Explora planetas y resuelve puzles.</p>
+            <a class="btn" href="#">Ver ficha</a>
           </article>
 
           <article class="card">
-            <h3 class="card__title">Street Wheels</h3>
-            <span class="badge">PlayStation</span>
-            <ul class="meta">
-              <li>Año: 2022</li><li>Género: Carreras</li><li>PEGI: 7</li>
+            <h2>Street Wheels</h2>
+            <p><strong>Plataforma:</strong> PlayStation</p>
+            <ul>
+              <li>Año: 2022</li>
+              <li>Género: Carreras</li>
+              <li>PEGI: 7</li>
             </ul>
-            <p class="desc">Velocidad por circuitos urbanos.</p>
-          </article>
-
-          <article class="card">
-            <h3 class="card__title">Kingdom Falls</h3>
-            <span class="badge">Nintendo</span>
-            <ul class="meta">
-              <li>Año: 2021</li><li>Género: RPG</li><li>PEGI: 12</li>
-            </ul>
-            <p class="desc">Defiende el reino con tu equipo.</p>
+            <p>Velocidad por circuitos urbanos.</p>
+            <a class="btn" href="#">Ver ficha</a>
           </article>
         </div>
       </section>
 
-      <!-- Picks (otro bloque con flex para probar apilado) -->
-      <section id="picks">
-        <h2>Mis Picks</h2>
-        <div class="picks-row">
-          <div class="pick">Indie</div>
-          <div class="pick">AAA</div>
-          <div class="pick">Retro</div>
-        </div>
-      </section>
-
-      <!-- Formulario de suscripción -->
-      <section id="boletin">
+      <section class="section" id="boletin">
         <h2>Suscríbete al boletín</h2>
         <p>Recibe novedades por correo.</p>
         <form>
@@ -73,10 +65,9 @@
         </form>
       </section>
 
-      <!-- Información de contacto -->
-      <section id="contacto">
+      <section class="section" id="contacto">
         <h2>Contacto</h2>
-        <p>Escríbenos para sugerencias.</p>
+        <p>Escríbenos tus sugerencias.</p>
         <form>
           <label for="email-ctc">Correo electrónico</label>
           <input id="email-ctc" name="email" type="email" placeholder="tu@correo.com" required />
@@ -85,7 +76,7 @@
       </section>
     </main>
 
-    <footer class="site-footer">
+    <footer class="site-footer" id="footer">
       <small>© 2025 Gamelist</small>
     </footer>
   </body>

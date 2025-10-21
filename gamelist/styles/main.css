@@ -1,87 +1,114 @@
-/* Reset básico y tipografía */
-html, body, h1, h2, h3, p, ul, li { margin: 0; padding: 0; }
+/* Reset mínimo y tipografía */
+html, body, h1, h2, p, ul, li { margin: 0; padding: 0; }
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
   font-family: Arial, sans-serif;
   color: #222;
   line-height: 1.5;
-  padding: 16px;
   background: #f5f7fb;
+  padding: 12px;
 }
 
-/* Header con flex para separar logo y nav */
-.site-header {
-  display: flex;                 /* Flexbox activado */
-  justify-content: space-between;/* Alineación eje principal */
-  align-items: center;           /* Alineación eje cruzado */
+/* Enlace de salto: visible al enfocar con teclado */
+.skip-link {
+  position: absolute;
+  left: -9999px;
+  top: 8px;
+  background: #0ea5e9;
+  color: #fff;
+  padding: 8px 12px;
+  border-radius: 8px;
+  text-decoration: none;
+}
+.skip-link:focus {
+  left: 8px;
+  outline: 2px solid #111;
+}
+
+/* Navegación accesible */
+.site-nav ul {
+  list-style: none;
+  display: flex;           /* flex conocido en tus manuales */
+  gap: 12px;               /* si no se permite gap, usar margin en li */
   background: #fff;
   border: 1px solid #e5e7eb;
-  padding: 10px 12px;
-  margin-bottom: 16px;
+  padding: 8px 12px;
+  border-radius: 10px;
 }
-
-.nav a {
+.site-nav a {
   text-decoration: none;
   color: #222;
-  margin-left: 12px;
+  padding: 6px 10px;
+  border-radius: 8px;
+}
+
+/* Estilos de foco claros y con contraste (accesibilidad) */
+a:focus,
+button:focus,
+input:focus {
+  outline: 3px solid #0ea5e9;          /* indicador visible */
+  outline-offset: 2px;
+  box-shadow: 0 0 0 3px rgba(14,165,233,.25);
+}
+
+/* También al pasar por encima, para mejorar visibilidad */
+a:hover,
+button:hover {
+  background: #eef6ff;
 }
 
 /* Secciones */
-.site-main section { background: #fff; border: 1px solid #e5e7eb; padding: 12px; margin-bottom: 16px; border-radius: 10px; }
-.site-main h2 { font-size: 20px; margin-bottom: 8px; }
-.site-main p  { margin-bottom: 8px; }
-
-/* Cards con Flexbox + wrap (sin media query) */
-.cards {
-  display: flex;         /* Flexbox */
-  flex-wrap: wrap;       /* Envoltura */
-  /* sin gap (no lo hemos visto); usamos margin en .card */
-}
-
-.card {
-  width: 280px;                  /* ancho fijo para que “salten” en varias filas */
+.section {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 10px;
   padding: 12px;
-  margin: 8px;                   /* separación entre tarjetas */
+  margin-top: 12px;
+}
+.section h1, .section h2 { margin-bottom: 8px; }
+.section p { margin-bottom: 8px; }
+
+/* Cards (sin Grid obligatorio; uso flex-wrap de tus manuales para que bajen de línea) */
+.cards {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px; /* si no, margin: 6px en .card */
+}
+.card {
+  width: 280px;
+  background: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 10px;
+  padding: 12px;
   box-shadow: 0 2px 8px rgba(0,0,0,.06);
 }
-
-.card__title { font-size: 18px; margin-bottom: 8px; }
-.badge { display: inline-block; background: #0ea5e9; color: #fff; padding: 2px 8px; border-radius: 999px; font-size: 12px; margin-bottom: 8px; }
-.meta { list-style: none; margin: 8px 0; }
-.meta li { font-size: 14px; margin-bottom: 4px; }
-.desc { font-size: 14px; }
-
-/* Picks en fila con flex (se apilan cuando no caben por wrap) */
-.picks-row { display: flex; flex-wrap: wrap; }
-.pick {
-  background: #eef6ff;
-  border: 1px solid #60a5fa;
-  border-radius: 8px;
+.card h2 { font-size: 18px; margin-bottom: 6px; }
+.card ul { list-style: none; margin: 6px 0; }
+.card li { margin-bottom: 4px; }
+.btn {
+  display: inline-block;
+  margin-top: 8px;
+  background: #0ea5e9;
+  color: #fff;
   padding: 8px 12px;
-  margin: 4px;
+  border-radius: 999px;
+  text-decoration: none;
 }
 
 /* Formularios básicos y accesibles */
-form { margin-top: 8px; }
 label { display: block; font-size: 14px; margin-bottom: 4px; }
 input[type="email"] {
   display: block;
   width: 100%;
   padding: 10px;
-  border: 1px solid #cbd5e1;
+  border: 1px solid #94a3b8;
   border-radius: 8px;
   background: #fff;
+  color: #111;
   margin-bottom: 8px;
 }
-input[type="email"]:focus {
-  outline: none;
-  border-color: #0ea5e9;
-  box-shadow: 0 0 0 3px rgba(14,165,233,.2);
-}
+input::placeholder { color: #6b7280; }
 button {
   padding: 10px 14px;
   border: 1px solid #0ea5e9;
@@ -92,6 +119,7 @@ button {
 }
 button:hover { box-shadow: 0 4px 12px rgba(14,165,233,.25); }
 
+/* Footer */
 .site-footer {
   text-align: center;
   color: #6b7280;
