@@ -1,82 +1,104 @@
-// src/main.js
-// Punto de entrada
-console.log("App OK — Tipos II (undefined/null)");
+// =========================
+// 1) Crear estructura de datos completa
+// =========================
 
-/*
-  Variables del enunciado anterior (solo por contexto)
-  y para probar OR (||) con defaults.
-*/
-let precioVivienda = 0;
-let porcentajeFinanciacion = 80; // default si no viene
-let isFavorite = false;
+// Objeto de entrada (inputs)
+const inputs = {
+  precioVivienda: 0,
+  porcentajeFinanciacion: 80,
+  principal: 0,              // capital a financiar
+  plazoAnios: 30,
+  interesNominalAnual: 3.0,
+  fechaInicioISO: ""         // la rellenaremos abajo con Date -> ISO
+};
 
-// Referencia al formulario
-let form = document.getElementById("calc-form");
+// Objeto de resultados (results)
+const results = {
+  cuota: 0,
+  interesesTotales: 0,
+  costeTotal: 0,
+  fechaFinISO: ""            // la rellenaremos abajo con Date -> ISO
+};
 
-if (form) {
-  form.addEventListener("submit", (ev) => {
-    ev.preventDefault();
+// Array de tabla de amortización (schedule)
+let schedule = [];
 
-    const formData = new FormData(form);
+// Escenario que agrupa todo
+const scenario = { inputs, results, schedule };
 
-    // 1) MANEJAR VALORES OPCIONALES con OR (||)
-    // Obtener valores del usuario (string o null si el campo no existe)
-    const vPrecio = formData.get("precio");
-    const vPlazo = formData.get("plazo");
-    const vPorcentaje = formData.get("porcentaje");
-    const vInteres = formData.get("interes");
-    const vFecha = formData.get("fecha");
+console.log("Escenario inicial:", scenario);
 
-    // Campo que NO existe para mostrar 'null' de forma clara
-    const campoInexistente = formData.get("comentario"); // -> null
+// =========================
+// 2) Manejar fechas con Date
+// =========================
 
-    // Mostrar si algo es undefined o null
-    // (FormData.get retorna null si no existe; undefined lo mostramos con una variable explícita)
-    let algoIndefinido; // undefined
-    if (typeof algoIndefinido === "undefined") {
-      console.log("algoIndefinido es 'undefined'");
-    }
-    if (campoInexistente === null) {
-      console.log("campoInexistente es 'null' (no existe en el form)");
-    }
+// Fecha de inicio = ahora
+const fechaInicio = new Date();
 
-    // Convertir a número cuando toque
-    const numPrecio = vPrecio != null ? parseFloat(vPrecio) : undefined;
-    const numPlazo = vPlazo != null ? parseFloat(vPlazo) : undefined;
-    const numPorcentaje = vPorcentaje != null ? parseFloat(vPorcentaje) : undefined;
-    const numInteres = vInteres != null ? parseFloat(vInteres) : undefined;
+// Fecha de fin = 30 años después
+const fechaFin = new Date(fechaInicio);
+fechaFin.setFullYear(fechaFin.getFullYear() + 30);
 
-    console.log("Valores crudos:", { vPrecio, vPlazo, vPorcentaje, vInteres, vFecha });
+// Convertimos fechaInicio a ISO (aaaa-mm-ddTHH:mm:ss.sssZ)
+const fechaInicioISO = fechaInicio.toISOString();
 
-    // 2) ARRAY DE ERRORES
-    const errors = [];
-    if (!vPrecio) errors.push("Precio es requerido");
-    if (!vPlazo) errors.push("Plazo es requerido");
-    console.log("errors:", errors);
+// Guardamos en la estructura de entradas
+scenario.inputs.fechaInicioISO = fechaInicioISO;
 
-    // 3) VALORES POR DEFECTO con OR (||)
-    // Si no hay fecha, usamos mes actual ISO "YYYY-MM"
-    const fechaActualMes = new Date().toISOString().slice(0, 7);
-    const fechaInicio = vFecha || fechaActualMes;
+// También guardamos la fecha fin en resultados, en ISO
+scenario.results.fechaFinISO = fechaFin.toISOString();
 
-    // Si no hay porcentaje, 80 por defecto
-    const porcentajeFinal = (isNaN(numPorcentaje) ? undefined : numPorcentaje) || 80;
+console.log("Fecha inicio (objeto Date):", fechaInicio);
+console.log("Fecha fin (+30 años):", fechaFin);
+console.log("Fecha inicio (ISO):", fechaInicioISO);
 
-    console.log("fechaInicio (final):", fechaInicio);
-    console.log("porcentajeFinanciacion (final):", porcentajeFinal);
+// =========================
+// 3) Crear array de escenarios (simples de ejemplo)
+// =========================
 
-    // 4) MANEJAR undefined / null
-    let valorIndefinido = undefined;
-    let valorNulo = null;
+const scenarios = [
+  { nombre: "Escenario A", precio: 200000, plazoAnios: 25, interesNominalAnual: 3.2 },
+  { nombre: "Escenario B", precio: 150000, plazoAnios: 30, interesNominalAnual: 2.5 },
+  { nombre: "Escenario C", precio: 300000, plazoAnios: 20, interesNominalAnual: 3.8 }
+];
 
-    console.log("valorIndefinido:", valorIndefinido); // undefined
-    console.log("valorNulo:", valorNulo);             // null
+console.log("Total escenarios:", scenarios.length);
+console.log("Primer escenario:", scenarios[0]);
 
-    // OR para valor seguro (si valorIndefinido es undefined, usar "por defecto")
-    let valorSeguro = valorIndefinido || "por defecto";
-    console.log("valorSeguro:", valorSeguro);
+// =========================
+// 4) Crear tabla de amortización básica (3 filas de ejemplo)
+//    * No calculamos fórmulas reales todavía; valores simples para practicar Arrays + Date.
+// =========================
 
-    // (Solo feedback en consola para esta práctica)
-    console.log("Resumen numérico:", { numPrecio, numPlazo, numPorcentaje, numInteres });
+schedule = []; // reinicio por claridad
+let saldo = 100000;              // saldo inicial ficticio
+const cuotaFija = 500;           // valor de ejemplo
+const interesFijo = 100;         // valor de ejemplo (parte de la cuota)
+const capitalFijo = cuotaFija - interesFijo;
+
+for (let i = 1; i <= 3; i++) {
+  const fechaParcela = new Date(fechaInicio);
+  // sumamos i meses
+  fechaParcela.setMonth(fechaParcela.getMonth() + i);
+
+  // reducimos saldo con el "capital" pagado
+  saldo = saldo - capitalFijo;
+
+  schedule.push({
+    mes: i,
+    fecha: fechaParcela.toISOString().slice(0, 10), // "YYYY-MM-DD"
+    cuota: cuotaFija,
+    interes: interesFijo,
+    capital: capitalFijo,
+    saldo: saldo
   });
 }
+
+// Metemos la schedule en el escenario
+scenario.schedule = schedule;
+
+// Mostramos la schedule completa
+console.log("Schedule (3 meses de ejemplo):", schedule);
+
+// Y el escenario final
+console.log("Escenario final:", scenario);
