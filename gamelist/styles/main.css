@@ -1,38 +1,37 @@
-/* Sintaxis y selectores según Manual II; estilos básicos según Manual I */
+/* Basado en tus manuales:
+   - Sintaxis y selectores CSS
+   - Colores, fuentes, texto, margin/padding
+   - Modelo de caja y box-sizing */
 
-/* Estilos generales de texto y colores */
+/* Reset mínimo y fuente básica */
+html, body, h1, h2, p { margin: 0; padding: 0; }
 body {
-  font-family: Arial, sans-serif;      /* Manual I: font-family */
-  color: #222222;                      /* Manual I: color (hex) */
-  margin: 0;                           /* Manual I: margin/padding */
-  padding: 0;
+  font-family: Arial, sans-serif;   /* Manual de estilos de texto */
+  color: #222222;                   /* Hex: Aplicación de colores */
+  line-height: 1.5;
+  padding: 10px;                    /* un poco de respiración general */
 }
 
-/* Encabezados y párrafos (Manual I: font-size, font-weight, text-align) */
-h1 { font-size: 24px; font-weight: bold; text-align: left; margin: 20px; }
-h2 { font-size: 20px; margin: 20px; }
-p  { font-size: 16px; margin: 20px; }
-
-/* Header, Main y Footer (elementos semánticos presentados en tus manuales) */
-header {
-  background: #f0f4ff;                 /* color por nombre/hex (Manual I) */
-  padding: 10px;                       /* padding (Manual I) */
+/* ACTIVAR border-box para todo (según manual del modelo de caja) */
+*, *::before, *::after {
+  box-sizing: border-box;
 }
 
-nav a {
-  margin-right: 10px;                  /* separación simple */
-  text-decoration: none;               /* básico de texto */
-  color: #222222;
+/* Caja de prueba del ejercicio */
+.caja-prueba {
+  width: 300px;                   /* Ancho objetivo */
+  background: #eef6ff;            /* Color de fondo */
+  margin: 20px 0;                 /* Margin: espacio externo (Manual I) */
+  padding: 16px;                  /* Padding: espacio interno */
+  border: 2px solid #60a5fa;      /* Borde: ancho, estilo, color */
+  border-radius: 10px;            /* Esquina redondeada (propiedad básica) */
 }
 
-main {
-  background: #ffffff;
-  padding: 10px;                       /* padding (Manual I) */
-  /* No uso max-width ni centrado con margin:auto porque no están explicados */
+.caja-prueba h2 {
+  font-size: 20px;
+  margin-bottom: 10px;
 }
 
-footer {
-  background: #eeeeee;
-  padding: 10px;
-  text-align: center;                  /* Manual I: text-align */
+.caja-prueba p {
+  font-size: 16px;
 }

@@ -3,29 +3,21 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Layout base</title>
-    <!-- Enlace al CSS externo (según manual de “Cómo enlazar CSS con HTML”) -->
+    <title>Modelo de Caja — border-box</title>
     <link rel="stylesheet" href="styles/main.css" />
   </head>
   <body>
-    <header>
-      <h1>Gamelist</h1>
-      <nav>
-        <a href="#">Inicio</a>
-        <a href="#">Juegos</a>
-        <a href="#">Contacto</a>
-      </nav>
-    </header>
-
     <main>
-      <h2>Contenido principal</h2>
-      <p>Este es el contenido principal de la página.</p>
-      <p>Texto de ejemplo para poder hacer scroll y ver el comportamiento del layout.</p>
-      <p>Otro párrafo de ejemplo con más texto.</p>
+      <section class="caja-prueba">
+        <h2>Caja de prueba (ancho 300px)</h2>
+        <p>
+          Esta caja tiene <strong>width: 300px</strong>, con padding y border.
+          Con <code>box-sizing: border-box</code> el ancho total se mantiene en 300px
+          aunque cambien el padding o el borde.
+        </p>
+      </section>
+      <p>Texto extra para poder hacer un poco de scroll y ver el comportamiento.</p>
+      <p>Otro párrafo de ejemplo.</p>
     </main>
-
-    <footer>
-      <p>© 2025 Gamelist</p>
-    </footer>
   </body>
 </html>
