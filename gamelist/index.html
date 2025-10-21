@@ -3,108 +3,67 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gamelist — Formularios accesibles</title>
+    <title>Gamelist — Rating básico (solo con lo visto)</title>
     <link rel="stylesheet" href="styles/main.css" />
   </head>
   <body>
-    <header>
-      <nav>
-        <a href="#sugerencia">Sugerir juego</a>
-        <a href="#newsletter">Newsletter</a>
-      </nav>
-    </header>
+    <main class="section">
+      <h1>Mi Colección</h1>
+      <p>Tarjetas con valoración por estrellas (versión básica).</p>
 
-    <main>
-      <!-- FORMULARIO COMPLETO DE SUGERENCIA -->
-      <section id="sugerencia" class="section">
-        <h1>Sugerir un juego</h1>
-        <p>Rellena los campos marcados como <strong>(requerido)</strong>.</p>
+      <div class="cards">
+        <!-- Card 1 -->
+        <article class="card">
+          <h2>Astro Quest</h2>
+          <p>Explora planetas y resuelve puzles.</p>
 
-        <form novalidate>
-          <!-- nombre del juego -->
-          <div class="field">
-            <label for="game-name">Nombre del juego <span class="req">(requerido)</span></label>
-            <input id="game-name" name="game_name" type="text" required placeholder="Ej: Astro Quest" />
-            <small class="help">Escribe el título oficial.</small>
-            <small class="error">Este campo es obligatorio.</small>
-          </div>
+          <!-- Rating básico: radios + etiquetas con estrellas -->
+          <form>
+            <fieldset class="rating">
+              <legend>Valoración</legend>
+              <label><input type="radio" name="rating-astro" value="1" /> ★</label>
+              <label><input type="radio" name="rating-astro" value="2" /> ★★</label>
+              <label><input type="radio" name="rating-astro" value="3" /> ★★★</label>
+              <label><input type="radio" name="rating-astro" value="4" /> ★★★★</label>
+              <label><input type="radio" name="rating-astro" value="5" /> ★★★★★</label>
+            </fieldset>
+          </form>
+        </article>
 
-          <!-- plataforma -->
-          <div class="field">
-            <label for="platform">Plataforma <span class="req">(requerido)</span></label>
-            <select id="platform" name="platform" required>
-              <option value="">Selecciona una plataforma</option>
-              <option>PC</option>
-              <option>PlayStation</option>
-              <option>Nintendo</option>
-              <option>Xbox</option>
-            </select>
-            <small class="error">Selecciona una opción.</small>
-          </div>
+        <!-- Card 2 -->
+        <article class="card">
+          <h2>Street Wheels</h2>
+          <p>Velocidad por circuitos urbanos.</p>
 
-          <!-- género (radios) -->
-          <fieldset class="field">
-            <legend>Género <span class="req">(requerido)</span></legend>
-            <div class="radio-row">
-              <label><input type="radio" name="genre" value="Aventura" required /> Aventura</label>
-              <label><input type="radio" name="genre" value="Acción" /> Acción</label>
-              <label><input type="radio" name="genre" value="RPG" /> RPG</label>
-              <label><input type="radio" name="genre" value="Carreras" /> Carreras</label>
-            </div>
-            <small class="error">Elige un género.</small>
-          </fieldset>
+          <form>
+            <fieldset class="rating">
+              <legend>Valoración</legend>
+              <label><input type="radio" name="rating-street" value="1" /> ★</label>
+              <label><input type="radio" name="rating-street" value="2" /> ★★</label>
+              <label><input type="radio" name="rating-street" value="3" /> ★★★</label>
+              <label><input type="radio" name="rating-street" value="4" /> ★★★★</label>
+              <label><input type="radio" name="rating-street" value="5" /> ★★★★★</label>
+            </fieldset>
+          </form>
+        </article>
 
-          <!-- año -->
-          <div class="field">
-            <label for="year">Año de lanzamiento <span class="req">(requerido)</span></label>
-            <input id="year" name="year" type="number" min="1980" max="2100" step="1" required placeholder="Ej: 2024" />
-            <small class="help">Entre 1980 y 2100.</small>
-            <small class="error">Introduce un año válido.</small>
-          </div>
+        <!-- Card 3 -->
+        <article class="card">
+          <h2>Kingdom Falls</h2>
+          <p>Defiende el reino con tu equipo.</p>
 
-          <!-- enlace (opcional) -->
-          <div class="field">
-            <label for="link">Enlace (opcional)</label>
-            <input id="link" name="link" type="url" placeholder="https://ejemplo.com/ficha" />
-            <small class="help">Usa una URL completa (http/https).</small>
-            <small class="error">Introduce una URL válida.</small>
-          </div>
-
-          <!-- comentario -->
-          <div class="field">
-            <label for="comment">Comentario</label>
-            <textarea id="comment" name="comment" rows="4" placeholder="¿Por qué recomiendas este juego?"></textarea>
-          </div>
-
-          <!-- acciones -->
-          <div class="actions">
-            <button type="submit" class="btn">Enviar sugerencia</button>
-            <button type="reset"  class="btn btn--secondary">Limpiar</button>
-          </div>
-        </form>
-      </section>
-
-      <!-- FORMULARIO NEWSLETTER -->
-      <section id="newsletter" class="section">
-        <h2>Newsletter</h2>
-        <p>Recibe novedades y ofertas por correo. Solo pedimos tu email.</p>
-
-        <form novalidate>
-          <div class="field">
-            <label for="email-news">Correo electrónico <span class="req">(requerido)</span></label>
-            <input id="email-news" name="email" type="email" required placeholder="tu@correo.com" />
-            <small class="help">No compartiremos tu correo. Puedes darte de baja cuando quieras.</small>
-            <small class="error">Introduce un email válido (ej. nombre@dominio.com).</small>
-          </div>
-          <div class="actions">
-            <button type="submit" class="btn">Suscribirme</button>
-          </div>
-        </form>
-      </section>
+          <form>
+            <fieldset class="rating">
+              <legend>Valoración</legend>
+              <label><input type="radio" name="rating-king" value="1" /> ★</label>
+              <label><input type="radio" name="rating-king" value="2" /> ★★</label>
+              <label><input type="radio" name="rating-king" value="3" /> ★★★</label>
+              <label><input type="radio" name="rating-king" value="4" /> ★★★★</label>
+              <label><input type="radio" name="rating-king" value="5" /> ★★★★★</label>
+            </fieldset>
+          </form>
+        </article>
+      </div>
     </main>
-
-    <footer class="site-footer">
-      <small>© 2025 Gamelist</small>
-    </footer>
   </body>
 </html>

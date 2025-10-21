@@ -1,112 +1,56 @@
-/* Reset mínimo y tipografía */
-html, body, h1, h2, h3, p, ul, li { margin: 0; padding: 0; }
+/* Base muy simple (lo visto en manuales) */
+html, body, h1, h2, p { margin: 0; padding: 0; }
 *, *::before, *::after { box-sizing: border-box; }
 
 body {
   font-family: Arial, sans-serif;
   color: #222;
-  line-height: 1.5;
   background: #f5f7fb;
+  line-height: 1.5;
   padding: 16px;
 }
 
-/* Navegación y secciones */
-nav a { text-decoration: none; color: #222; margin-right: 12px; }
 .section {
   background: #fff;
   border: 1px solid #e5e7eb;
   border-radius: 12px;
   padding: 16px;
-  margin: 16px 0;
 }
-.section h1, .section h2 { margin-bottom: 8px; }
-.section p { margin: 8px 0; }
 
-/* Formularios: estilo uniforme y accesible */
-form { margin-top: 8px; }
-.field { margin-bottom: 12px; }
-label, legend { display: block; font-weight: bold; margin-bottom: 6px; }
-.req { font-weight: normal; color: #991b1b; }
+.cards {
+  /* con lo visto: grid básico para tarjetas */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: 12px;
+  margin-top: 12px;
+}
 
-input[type="text"],
-input[type="number"],
-input[type="url"],
-input[type="email"],
-select,
-textarea {
-  width: 100%;
-  padding: 10px;
-  border: 1px solid #cbd5e1;
-  border-radius: 8px;
+.card {
   background: #fff;
-  color: #111;
-  font-size: 16px;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 12px;
 }
 
-textarea { resize: vertical; }
+.card h2 { font-size: 18px; margin-bottom: 6px; }
 
-/* Ayudas y errores (se muestran/ocultan con estados del input) */
-.help  { display: block; font-size: 13px; color: #6b7280; margin-top: 4px; }
-.error { display: none;  font-size: 13px; color: #991b1b; margin-top: 4px; }
+/* Rating básico: tamaño y color de estrellas */
+.rating { margin-top: 8px; border: 0; }
+.rating legend { font-size: 14px; margin-bottom: 6px; }
 
-/* Foco visible (accesibilidad) */
-input:focus,
-select:focus,
-textarea:focus,
-button:focus {
+.rating label {
+  display: inline-block;
+  font-size: 1.5rem;       /* tamaño pedido */
+  color: #999999;          /* color inactivo */
+  margin-right: 6px;
+  cursor: pointer;
+}
+
+/* Foco visible en los inputs (accesibilidad) */
+.rating input:focus {
   outline: 3px solid #0ea5e9;
   outline-offset: 2px;
-  box-shadow: 0 0 0 3px rgba(14,165,233,.2);
-  border-color: #0ea5e9;
 }
 
-/* Estados de validación nativos (HTML5) */
-input:required:invalid,
-select:required:invalid,
-textarea:required:invalid {
-  border-color: #f43f5e; /* rojo */
-  background: #fff7f8;
-}
-input:required:invalid ~ .error,
-select:required:invalid ~ .error,
-textarea:required:invalid ~ .error {
-  display: block;
-}
-
-/* Si es válido, damos feedback leve */
-input:valid,
-select:valid,
-textarea:valid {
-  border-color: #10b981; /* verde */
-  background: #f0fdf4;
-}
-
-/* Radios: dejamos estilo nativo y cuidamos el agrupado */
-.radio-row { display: flex; flex-wrap: wrap; gap: 12px; }
-.radio-row label { font-weight: normal; }
-
-/* Botones */
-.btn {
-  display: inline-block;
-  border: 1px solid #0ea5e9;
-  background: #0ea5e9;
-  color: #fff;
-  padding: 10px 14px;
-  border-radius: 10px;
-  cursor: pointer;
-  text-decoration: none;
-  transition: box-shadow .15s ease, transform .05s ease, background .15s ease;
-}
-.btn:hover  { box-shadow: 0 4px 12px rgba(14,165,233,.25); }
-.btn:active { transform: translateY(1px); }
-
-.btn--secondary {
-  background: #fff;
-  color: #111;
-  border-color: #cbd5e1;
-}
-
-.actions { display: flex; gap: 8px; flex-wrap: wrap; }
-
-/* Footer */
-.site-footer { text-align: center; color: #6b7280; margin-top: 16px; }
+/* (Opcional) indicar interacción al pasar por encima */
+.rating label:hover { color: #f59e0b; } /* solo hover, no persistente */
