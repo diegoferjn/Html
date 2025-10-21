@@ -1,50 +1,82 @@
 // src/main.js
-// 1) Mensaje de inicio (para verificar que el script carga)
-console.log("Aplicación iniciada: Calculadora hipoteca");
+// Punto de entrada
+console.log("App OK — Tipos II (undefined/null)");
 
-// 2) Variables iniciales solicitadas
+/*
+  Variables del enunciado anterior (solo por contexto)
+  y para probar OR (||) con defaults.
+*/
 let precioVivienda = 0;
-let porcentajeFinanciacion = 80;
+let porcentajeFinanciacion = 80; // default si no viene
 let isFavorite = false;
 
-console.log("Estado inicial -> precioVivienda:", precioVivienda);
-console.log("Estado inicial -> porcentajeFinanciacion:", porcentajeFinanciacion);
-console.log("Estado inicial -> isFavorite:", isFavorite);
-
-// 3) Referencia al formulario
+// Referencia al formulario
 let form = document.getElementById("calc-form");
 
-// 4) Escuchar submit y obtener valores con FormData + parseFloat
 if (form) {
   form.addEventListener("submit", (ev) => {
     ev.preventDefault();
 
     const formData = new FormData(form);
 
-    const precio = parseFloat(formData.get("precio"));
-    const porcentaje = parseFloat(formData.get("porcentaje"));
-    const plazo = parseFloat(formData.get("plazo"));
-    const interes = parseFloat(formData.get("interes"));
-    const fecha = formData.get("fecha"); // string (ej. "2025-10")
+    // 1) MANEJAR VALORES OPCIONALES con OR (||)
+    // Obtener valores del usuario (string o null si el campo no existe)
+    const vPrecio = formData.get("precio");
+    const vPlazo = formData.get("plazo");
+    const vPorcentaje = formData.get("porcentaje");
+    const vInteres = formData.get("interes");
+    const vFecha = formData.get("fecha");
 
-    console.log("Valores del formulario:");
-    console.log("precio (number):", precio);
-    console.log("porcentaje (number):", porcentaje);
-    console.log("plazo (number):", plazo);
-    console.log("interes (number):", interes);
-    console.log("fecha (string):", fecha);
+    // Campo que NO existe para mostrar 'null' de forma clara
+    const campoInexistente = formData.get("comentario"); // -> null
+
+    // Mostrar si algo es undefined o null
+    // (FormData.get retorna null si no existe; undefined lo mostramos con una variable explícita)
+    let algoIndefinido; // undefined
+    if (typeof algoIndefinido === "undefined") {
+      console.log("algoIndefinido es 'undefined'");
+    }
+    if (campoInexistente === null) {
+      console.log("campoInexistente es 'null' (no existe en el form)");
+    }
+
+    // Convertir a número cuando toque
+    const numPrecio = vPrecio != null ? parseFloat(vPrecio) : undefined;
+    const numPlazo = vPlazo != null ? parseFloat(vPlazo) : undefined;
+    const numPorcentaje = vPorcentaje != null ? parseFloat(vPorcentaje) : undefined;
+    const numInteres = vInteres != null ? parseFloat(vInteres) : undefined;
+
+    console.log("Valores crudos:", { vPrecio, vPlazo, vPorcentaje, vInteres, vFecha });
+
+    // 2) ARRAY DE ERRORES
+    const errors = [];
+    if (!vPrecio) errors.push("Precio es requerido");
+    if (!vPlazo) errors.push("Plazo es requerido");
+    console.log("errors:", errors);
+
+    // 3) VALORES POR DEFECTO con OR (||)
+    // Si no hay fecha, usamos mes actual ISO "YYYY-MM"
+    const fechaActualMes = new Date().toISOString().slice(0, 7);
+    const fechaInicio = vFecha || fechaActualMes;
+
+    // Si no hay porcentaje, 80 por defecto
+    const porcentajeFinal = (isNaN(numPorcentaje) ? undefined : numPorcentaje) || 80;
+
+    console.log("fechaInicio (final):", fechaInicio);
+    console.log("porcentajeFinanciacion (final):", porcentajeFinal);
+
+    // 4) MANEJAR undefined / null
+    let valorIndefinido = undefined;
+    let valorNulo = null;
+
+    console.log("valorIndefinido:", valorIndefinido); // undefined
+    console.log("valorNulo:", valorNulo);             // null
+
+    // OR para valor seguro (si valorIndefinido es undefined, usar "por defecto")
+    let valorSeguro = valorIndefinido || "por defecto";
+    console.log("valorSeguro:", valorSeguro);
+
+    // (Solo feedback en consola para esta práctica)
+    console.log("Resumen numérico:", { numPrecio, numPlazo, numPorcentaje, numInteres });
   });
 }
-
-// 5) Trabajo con valores primitivos (string, boolean, number)
-let nombre = "Mi escenario";
-let esFavorito = false;
-let precio = 200000;
-
-console.log("nombre (string):", nombre);
-console.log("esFavorito (boolean):", esFavorito);
-console.log("precio (number):", precio);
-
-// Convertir number -> string
-let precioComoTexto = precio.toString();
-console.log("precio como string:", precioComoTexto);
