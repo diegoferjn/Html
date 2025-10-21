@@ -1,18 +1,18 @@
 /*
 ==========================================
 Archivo: styles/main.css
-Descripción: Reset + variables CSS + estilos de prueba
 Secciones:
-  1) Reset CSS básico
+  1) Reset CSS (básico)
   2) Variables (:root)
-  3) Estilos base y demo (uso de variables)
+  3) Modelo de caja (box-sizing)
+  4) Estilos de prueba (demo)
 ==========================================
 */
 
 /* 1) RESET CSS (básico) */
 *,
 *::before,
-*::after { box-sizing: border-box; }
+*::after { box-sizing: inherit; }
 
 html, body,
 h1,h2,h3,h4,h5,h6,
@@ -20,134 +20,53 @@ p,figure,blockquote,dl,dd { margin: 0; padding: 0; }
 
 body { min-height: 100vh; line-height: 1.5; }
 
-ul,ol { list-style: none; padding-left: 0; margin: 0; }
-
-img,video,canvas,svg { display: block; max-width: 100%; }
-
-input,button,textarea,select { font: inherit; }
-
 /* 2) VARIABLES (:root) */
-:root {
-  /* Colores principales */
-  --brand: #0ea5e9;        /* azul principal */
-  --brand-alt: #a855f7;    /* <== nueva variable pedida */
-  --text: #222222;
-  --muted: #6b7280;
+:root{
+  /* Tipografía y colores base */
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+  --text: #222;
   --surface: #ffffff;
   --surface-2: #f5f7fb;
   --border: #e5e7eb;
 
-  /* Colores de plataformas (ejemplo) */
-  --platform-playstation: #003087;
-  --platform-xbox: #107c10;
-  --platform-nintendo: #e60012;
-  --platform-pc: #444444;
-  --platform-mobile: #0f766e;
-
-  /* Tipografía */
-  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-  --fs-100: 0.875rem;   /* 14px */
-  --fs-200: 1rem;       /* 16px */
-  --fs-300: 1.125rem;   /* 18px */
-  --fs-400: 1.25rem;    /* 20px */
-  --lh-base: 1.5;
-
-  /* Espaciado (escala 4px) */
-  --space-1: 0.25rem;   /* 4px */
-  --space-2: 0.5rem;    /* 8px */
-  --space-3: 0.75rem;   /* 12px */
-  --space-4: 1rem;      /* 16px */
-  --space-6: 1.5rem;    /* 24px */
-  --space-8: 2rem;      /* 32px */
-
-  /* Radios */
-  --radius-sm: 6px;
-  --radius-md: 10px;
-  --radius-lg: 16px;
-  --radius-pill: 999px;
-
-  /* Sombras */
-  --shadow-sm: 0 1px 2px rgba(0,0,0,0.06);
-  --shadow-md: 0 4px 10px rgba(0,0,0,0.08);
-  --shadow-lg: 0 10px 24px rgba(0,0,0,0.12);
+  /* Escala de espaciado */
+  --space-2: 0.5rem;   /* 8px  */
+  --space-4: 1rem;     /* 16px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-xl: 2.5rem;  /* 40px  ==> usada en el ejercicio */
 }
 
-/* 3) ESTILOS BASE + DEMO (aplicación de variables) */
-body {
+/* 3) MODELO DE CAJA: reforzar box-sizing */
+/* Actívalo/desactívalo para el experimento */
+html { box-sizing: border-box; }
+/* Para probar diferencias, comenta temporalmente la línea anterior:
+   html { box-sizing: border-box; }
+*/
+
+/* 4) ESTILOS DE PRUEBA */
+body{
   font-family: var(--font-sans);
-  font-size: var(--fs-200);
-  line-height: var(--lh-base);
   color: var(--text);
   background: var(--surface-2);
 }
 
-.container {
+.container{
   max-width: 960px;
   margin: var(--space-8) auto;
   padding: var(--space-6);
   background: var(--surface);
   border: 1px solid var(--border);
-  border-radius: var(--radius-lg);
-  box-shadow: var(--shadow-md);
 }
 
-h1 {
-  font-size: clamp(var(--fs-300), 2vw + 1rem, 2rem);
-  margin-bottom: var(--space-4);
-  color: var(--brand);
+/* Elemento de prueba del ejercicio */
+.box-demo{
+  width: 300px;                 /* El ancho total debe mantenerse en 300px */
+  background: #eef6ff;
+  margin: var(--space-4) 0;
+  padding: var(--space-4);      /* luego súbelo a var(--space-xl) en la prueba */
+  border: 2px solid #60a5fa;    /* luego súbelo a 4px en la prueba */
+  border-radius: 10px;
 }
 
-.lead {
-  font-size: var(--fs-300);
-  color: var(--muted);
-  margin-bottom: var(--space-6);
-}
-
-/* Botón que usa la variable --brand */
-.btn {
-  display: inline-block;
-  padding: var(--space-2) var(--space-4);
-  background: var(--brand);
-  color: white;
-  border: 1px solid transparent;
-  border-radius: var(--radius-pill);
-  box-shadow: var(--shadow-sm);
-  text-decoration: none;
-  font-weight: 600;
-}
-
-/* Estilo alternativo que usa --brand-alt (requisito del ejercicio) */
-.btn--alt {
-  background: var(--brand-alt);
-}
-
-/* Demo de “tarjetas” usando colores de plataformas */
-.grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: var(--space-4);
-}
-
-.card {
-  padding: var(--space-4);
-  border: 1px solid var(--border);
-  border-radius: var(--radius-md);
-  box-shadow: var(--shadow-sm);
-  background: var(--surface);
-}
-
-.card h3 { margin-bottom: var(--space-2); font-size: var(--fs-300); }
-
-.badge {
-  display: inline-block;
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-pill);
-  color: #fff;
-  font-size: var(--fs-100);
-}
-
-.badge--ps { background: var(--platform-playstation); }
-.badge--xbox { background: var(--platform-xbox); }
-.badge--ntd { background: var(--platform-nintendo); }
-.badge--pc { background: var(--platform-pc); }
-.badge--mob { background: var(--platform-mobile); }
+.box-demo h2{ margin-bottom: var(--space-2); font-size: 1.125rem; }
