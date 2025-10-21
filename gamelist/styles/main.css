@@ -1,20 +1,23 @@
 /* ============================================================
-   ORDEN Y MANTENIMIENTO (estructura del CSS con comentarios)
-   Secciones:
-   1) Reset y base tipográfica
-   2) Layout general (header, layout 2 columnas)
+   CHECKLIST FINAL — ORDEN Y MANTENIMIENTO
+   Estructura:
+   1) Reset / Base
+   2) Layout (header, grid principal)
    3) Componentes (cards, badges, botones)
-   4) Bloques de página (sidebar, coleccion, testimonios, footer)
-   5) Formularios (estilos básicos + rating básico)
-   6) Utilidades simples (muted, espaciados mínimos si hace falta)
+   4) Bloques (sidebar, testimonios, footer)
+   5) Formularios (inputs, estados, rating simple)
+   6) Accesibilidad (foco)
+   7) Responsive (media query principal)
+   8) Checklist (comentarios al final)
    ============================================================ */
 
-/* 1) RESET Y BASE TIPOGRÁFICA -------------------------------- */
+/* 1) RESET / BASE ------------------------------------------- */
 html, body, h1, h2, h3, p, ul, li, figure, blockquote { margin:0; padding:0; }
-*, *::before, *::after { box-sizing:border-box; }
+*, *::before, *::after { box-sizing: border-box; }
 body { font-family: Arial, sans-serif; color:#222; background:#f5f7fb; line-height:1.5; }
+.muted { color:#6b7280; }
 
-/* 2) LAYOUT GENERAL ------------------------------------------ */
+/* 2) LAYOUT -------------------------------------------------- */
 .site-header {
   display:flex; justify-content:space-between; align-items:center;
   padding:12px 16px; background:#fff; border-bottom:1px solid #e5e7eb;
@@ -26,28 +29,23 @@ body { font-family: Arial, sans-serif; color:#222; background:#f5f7fb; line-heig
 .section {
   background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px;
 }
-.muted { color:#6b7280; }
 
-/* 3) COMPONENTES --------------------------------------------- */
+/* 3) COMPONENTES -------------------------------------------- */
 /* Cards */
-.cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:12px; }
+.cards { display:grid; grid-template-columns: repeat(auto-fit, minmax(260px,1fr)); gap:12px; }
 .card  { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
 .card__header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
 .card__title { font-size:18px; }
 .card__desc  { font-size:14px; color:#333; margin-top:4px; }
 
-/* Badge (plataforma) */
 .badge { display:inline-block; padding:2px 10px; border-radius:999px; background:#0ea5e9; color:#fff; font-size:12px; }
 
-/* Botones básicos */
 .btn { display:inline-block; border:1px solid #0ea5e9; background:#0ea5e9; color:#fff; padding:8px 12px; border-radius:10px; text-decoration:none; cursor:pointer; }
 .btn:hover { box-shadow:0 4px 12px rgba(14,165,233,.25); }
 
-/* 4) BLOQUES DE PÁGINA ---------------------------------------- */
+/* 4) BLOQUES ------------------------------------------------- */
 /* Sidebar */
-.sidebar {
-  background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; align-self:start;
-}
+.sidebar { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; align-self:start; }
 .sidebar h2 { font-size:18px; margin-bottom:8px; }
 .sidebar ul { list-style:none; }
 .sidebar li { margin-bottom:6px; }
@@ -55,12 +53,10 @@ body { font-family: Arial, sans-serif; color:#222; background:#f5f7fb; line-heig
 
 /* Testimonios */
 .testimonials h2 { margin-bottom:8px; }
-.testimonial {
-  background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:12px;
-}
+.testimonial { background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:12px; }
 .testimonial p { margin-bottom:6px; }
 
-/* Footer mejorado */
+/* Footer */
 .site-footer { margin-top:16px; background:#fff; border-top:1px solid #e5e7eb; }
 .footer-cols {
   display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
@@ -72,20 +68,62 @@ body { font-family: Arial, sans-serif; color:#222; background:#f5f7fb; line-heig
 .footer-cols a { text-decoration:none; color:#222; }
 .footer-copy { border-top:1px solid #e5e7eb; padding:8px 16px; text-align:center; color:#6b7280; }
 
-/* 5) FORMULARIOS (básico + rating básico) --------------------- */
+/* 5) FORMULARIOS -------------------------------------------- */
 label { display:block; font-weight:bold; margin:6px 0 4px; }
-input[type="text"], input[type="email"] {
+input[type="text"], input[type="email"], select {
   width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; background:#fff; color:#111;
 }
+
+/* Estados de validación nativa visibles */
+input:focus, select:focus { outline:3px solid #0ea5e9; outline-offset:2px; }
+input:required:invalid, select:required:invalid { border-color:#b91c1c; background:#fff7f7; }
+input:required:valid,   select:required:valid   { border-color:#059669; }
+
+/* Rating simple (radios + estrella en texto) */
 .rating-form { margin-top:8px; }
 .rating { border:0; margin-top:6px; }
 .rating legend { font-size:14px; margin-bottom:6px; }
-
-/* “Rating básico”: estrellas como texto, tamaño y color base.
-   (Persistencia visual de 1..N estrellas requeriría selectores avanzados no cubiertos) */
 .rating label { display:inline-block; font-size:1.2rem; color:#999; margin-right:6px; cursor:pointer; }
-.rating input:focus { outline:3px solid #0ea5e9; outline-offset:2px; }
-.rating label:hover { color:#f59e0b; }
 
-/* 6) UTILIDADES SENCILLAS ------------------------------------- */
-.text-center { text-align:center; }
+/* 6) ACCESIBILIDAD (foco global visible) --------------------- */
+a:focus, button:focus { outline:3px solid #0ea5e9; outline-offset:2px; border-radius:6px; }
+
+/* 7) RESPONSIVE ---------------------------------------------- */
+@media (max-width: 768px) {
+  .layout { grid-template-columns: 1fr; }
+  .site-nav a { display:inline-block; margin:6px 8px 0 0; }
+}
+
+/* 8) CHECKLIST FINAL (comentarios de verificación) -----------
+   Marcar ✓ (ok) o ✗ (pendiente). Esto se revisa manualmente.
+
+   [Estructura y semántica]
+   ✓ HTML con header/nav/main/aside/section/footer
+   ✓ Enlaces de navegación funcionan (#anclas)
+   ✓ Imágenes (si las hubiera) con alt descriptivo
+
+   [Validación]
+   ✓ HTML validado en W3C (sin errores)
+   ✓ CSS validado en W3C (sin errores)
+
+   [Accesibilidad]
+   ✓ Foco visible en enlaces y botones
+   ✓ Formularios con label + validaciones nativas visibles
+   ✓ Navegación con Tab/Shift+Tab sin trampas de foco
+
+   [Responsive]
+   ✓ Sin scroll horizontal en 320px, 768px, 1024px, 1200px+
+   ✓ Tipografías/espaciados legibles en móvil
+
+   [Componentes]
+   ✓ Cards con título/desc/badge
+   ✓ Rating con radios; estado persiste (radio seleccionado)
+   ✓ Sidebar con lista de enlaces
+   ✓ Testimonio (blockquote + cite)
+   ✓ Footer con proyecto, navegación y contacto
+
+   [Mantenimiento]
+   ✓ Secciones CSS comentadas y ordenadas
+   ✓ Sin reglas duplicadas evidentes
+   ✓ Selectores simples (sin IDs) y consistencia en nombres
+   ---------------------------------------------------------- */
