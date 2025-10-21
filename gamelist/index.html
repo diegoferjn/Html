@@ -1,129 +1,178 @@
 <!doctype html>
 <html lang="es">
-  <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Gamelist — Utilidades y Helpers</title>
-    <link rel="stylesheet" href="styles/main.css" />
-  </head>
-  <body class="p-md">
-    <header class="mb-md">
-      <h1 class="text-center">Gamelist</h1>
-      <nav class="mt-sm text-center">
-        <a href="#coleccion" class="mr-sm">Colección</a>
-        <a href="#componentes">Componentes</a>
-      </nav>
-    </header>
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gamelist — Orden y mantenimiento</title>
+  <link rel="stylesheet" href="styles/main.css" />
+</head>
+<body>
+  <!-- Header simple -->
+  <header class="site-header">
+    <h1>Gamelist</h1>
+    <nav class="site-nav">
+      <a href="#coleccion">Colección</a>
+      <a href="#sugerencia">Sugerir juego</a>
+      <a href="#testimonios">Testimonios</a>
+    </nav>
+  </header>
 
-    <!-- Sección: Componentes (demostración de utilidades) -->
-    <section id="componentes" class="section mb-lg">
-      <h2 class="mb-sm">Demostración de utilidades</h2>
+  <div class="layout">
+    <!-- SIDEBAR (nuevo) -->
+    <aside class="sidebar" aria-label="Enlaces útiles">
+      <h2>Sidebar</h2>
+      <ul>
+        <li><a href="#coleccion">Ir a Colección</a></li>
+        <li><a href="#sugerencia">Ir a Sugerencia</a></li>
+        <li><a href="#testimonios">Ir a Testimonios</a></li>
+      </ul>
+    </aside>
 
-      <!-- Texto y colores -->
-      <p class="text-muted mb-xs">Este es un texto muted.</p>
-      <p class="text-brand mb-xs">Color de marca.</p>
-      <p class="text-success mb-xs">Operación correcta.</p>
-      <p class="text-error mb-md">Ha ocurrido un error.</p>
+    <!-- CONTENIDO PRINCIPAL -->
+    <main class="content">
+      <!-- Colección con cards (añado 3 nuevas) -->
+      <section id="coleccion" class="section">
+        <h2>Mi Colección</h2>
+        <p class="muted">Tarjetas maquetadas con Grid y un rating básico (sin JS).</p>
 
-      <!-- Alineación -->
-      <div class="mb-md">
-        <p class="text-left">Alineado a la izquierda</p>
-        <p class="text-center">Centrado</p>
-        <p class="text-right">Alineado a la derecha</p>
-      </div>
+        <div class="cards">
+          <!-- Card 1 -->
+          <article class="card">
+            <header class="card__header">
+              <h3 class="card__title">Astro Quest</h3>
+              <span class="badge">PC</span>
+            </header>
+            <p class="card__desc">Explora planetas y resuelve puzles.</p>
+            <!-- Rating básico (radios + estrellas en texto) -->
+            <form action="javascript:void(0)" class="rating-form" aria-label="Valoración Astro Quest">
+              <fieldset class="rating">
+                <legend>Valoración</legend>
+                <label><input type="radio" name="rating-astro" value="1" /> ★</label>
+                <label><input type="radio" name="rating-astro" value="2" /> ★★</label>
+                <label><input type="radio" name="rating-astro" value="3" /> ★★★</label>
+                <label><input type="radio" name="rating-astro" value="4" /> ★★★★</label>
+                <label><input type="radio" name="rating-astro" value="5" /> ★★★★★</label>
+              </fieldset>
+              <!-- Nota: el “alert” al enviar requeriría JS, no cubierto en los manuales -->
+              <button type="submit" class="btn">Valorar</button>
+            </form>
+          </article>
 
-      <!-- Display helpers -->
-      <div class="mb-md">
-        <span class="inline mr-sm">inline</span>
-        <span class="inline-block p-xs mr-sm" style="background:#eef">inline-block</span>
-        <div class="block p-xs" style="background:#efe">block</div>
-      </div>
+          <!-- Card 2 (nueva) -->
+          <article class="card">
+            <header class="card__header">
+              <h3 class="card__title">Street Wheels</h3>
+              <span class="badge">PlayStation</span>
+            </header>
+            <p class="card__desc">Velocidad por circuitos urbanos.</p>
+            <form action="javascript:void(0)" class="rating-form" aria-label="Valoración Street Wheels">
+              <fieldset class="rating">
+                <legend>Valoración</legend>
+                <label><input type="radio" name="rating-street" value="1" /> ★</label>
+                <label><input type="radio" name="rating-street" value="2" /> ★★</label>
+                <label><input type="radio" name="rating-street" value="3" /> ★★★</label>
+                <label><input type="radio" name="rating-street" value="4" /> ★★★★</label>
+                <label><input type="radio" name="rating-street" value="5" /> ★★★★★</label>
+              </fieldset>
+              <button type="submit" class="btn">Valorar</button>
+            </form>
+          </article>
 
-      <!-- Flex helpers -->
-      <div class="flex flex-row items-center justify-between p-sm mb-md" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px;">
-        <span>Fila</span>
-        <span>centrado vertical</span>
-        <span>espacio entre</span>
-      </div>
-      <div class="flex flex-col items-start p-sm mb-md" style="background:#f9fafb; border:1px solid #e5e7eb; border-radius:8px;">
-        <span>Columna</span>
-        <span>items-start</span>
-      </div>
+          <!-- Card 3 (nueva) -->
+          <article class="card">
+            <header class="card__header">
+              <h3 class="card__title">Kingdom Falls</h3>
+              <span class="badge">Nintendo</span>
+            </header>
+            <p class="card__desc">Defiende el reino con tu equipo.</p>
+            <form action="javascript:void(0)" class="rating-form" aria-label="Valoración Kingdom Falls">
+              <fieldset class="rating">
+                <legend>Valoración</legend>
+                <label><input type="radio" name="rating-king" value="1" /> ★</label>
+                <label><input type="radio" name="rating-king" value="2" /> ★★</label>
+                <label><input type="radio" name="rating-king" value="3" /> ★★★</label>
+                <label><input type="radio" name="rating-king" value="4" /> ★★★★</label>
+                <label><input type="radio" name="rating-king" value="5" /> ★★★★★</label>
+              </fieldset>
+              <button type="submit" class="btn">Valorar</button>
+            </form>
+          </article>
 
-      <!-- Grid helpers -->
-      <div class="grid grid-cols-3 gap-sm mb-md">
-        <div class="p-xs" style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;">1</div>
-        <div class="p-xs" style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;">2</div>
-        <div class="p-xs" style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;">3</div>
-      </div>
-
-      <!-- Sizing helpers -->
-      <div class="p-xs mb-sm" style="background:#f3f4f6;border:1px solid #e5e7eb;border-radius:8px;">
-        <div class="w-50 max-w-600 p-xs" style="background:#fff;border:1px solid #e5e7eb;border-radius:8px;">
-          Caja al 50% con max-w-600
+          <!-- Card 4 (nueva) -->
+          <article class="card">
+            <header class="card__header">
+              <h3 class="card__title">Ocean Drift</h3>
+              <span class="badge">Xbox</span>
+            </header>
+            <p class="card__desc">Explora islas y misterios marinos.</p>
+            <form action="javascript:void(0)" class="rating-form" aria-label="Valoración Ocean Drift">
+              <fieldset class="rating">
+                <legend>Valoración</legend>
+                <label><input type="radio" name="rating-ocean" value="1" /> ★</label>
+                <label><input type="radio" name="rating-ocean" value="2" /> ★★</label>
+                <label><input type="radio" name="rating-ocean" value="3" /> ★★★</label>
+                <label><input type="radio" name="rating-ocean" value="4" /> ★★★★</label>
+                <label><input type="radio" name="rating-ocean" value="5" /> ★★★★★</label>
+              </fieldset>
+              <button type="submit" class="btn">Valorar</button>
+            </form>
+          </article>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!-- Sección: Colección (aplicando utilidades a las cards) -->
-    <section id="coleccion" class="section">
-      <h2 class="mb-sm text-center">Mi Colección</h2>
-      <p class="text-center text-muted mb-md">Tarjetas maquetadas con utilidades de grid, espaciado y flex.</p>
+      <!-- Testimonios (nuevo bloque) -->
+      <section id="testimonios" class="section testimonials">
+        <h2>Testimonios</h2>
+        <blockquote class="testimonial">
+          <p>“La mejor colección de juegos que he organizado. Sencillo y claro.”</p>
+          <cite>— Alex, aficionado a los RPG</cite>
+        </blockquote>
+      </section>
 
-      <div class="grid grid-cols-auto gap-md">
-        <!-- Card -->
-        <article class="card p-sm">
-          <header class="flex justify-between items-center mb-sm">
-            <h3 class="m-0">Astro Quest</h3>
-            <span class="badge">PC</span>
-          </header>
-          <ul class="mb-sm">
-            <li>Año: 2023</li>
-            <li>Género: Aventura</li>
-          </ul>
-          <p class="text-muted mb-sm">Explora planetas y resuelve puzles.</p>
-          <div class="flex gap-sm">
-            <a class="btn" href="#">Jugar</a>
-            <a class="btn btn--outline" href="#">Detalles</a>
-          </div>
-        </article>
+      <!-- Formulario de sugerencia (con la misma “no acción”) -->
+      <section id="sugerencia" class="section">
+        <h2>Sugerir un juego</h2>
+        <form action="javascript:void(0)" novalidate>
+          <fieldset>
+            <legend>Información</legend>
+            <label for="game-name">Nombre del juego (requerido)</label>
+            <input id="game-name" name="game_name" type="text" required placeholder="Ej: Astro Quest" />
+          </fieldset>
+          <fieldset>
+            <legend>Contacto</legend>
+            <label for="email">Email (requerido)</label>
+            <input id="email" name="email" type="email" required placeholder="tu@correo.com" />
+          </fieldset>
+          <!-- Nota: el “alert” de envío requeriría JS, no cubierto -->
+          <button type="submit" class="btn">Enviar</button>
+        </form>
+      </section>
+    </main>
+  </div>
 
-        <article class="card p-sm">
-          <header class="flex justify-between items-center mb-sm">
-            <h3 class="m-0">Street Wheels</h3>
-            <span class="badge">PlayStation</span>
-          </header>
-          <ul class="mb-sm">
-            <li>Año: 2022</li>
-            <li>Género: Carreras</li>
-          </ul>
-          <p class="text-muted mb-sm">Velocidad por circuitos urbanos.</p>
-          <div class="flex gap-sm">
-            <a class="btn" href="#">Jugar</a>
-            <a class="btn btn--outline" href="#">Detalles</a>
-          </div>
-        </article>
-
-        <article class="card p-sm">
-          <header class="flex justify-between items-center mb-sm">
-            <h3 class="m-0">Kingdom Falls</h3>
-            <span class="badge">Nintendo</span>
-          </header>
-          <ul class="mb-sm">
-            <li>Año: 2021</li>
-            <li>Género: RPG</li>
-          </ul>
-          <p class="text-muted mb-sm">Defiende el reino con tu equipo.</p>
-          <div class="flex gap-sm">
-            <a class="btn" href="#">Jugar</a>
-            <a class="btn btn--outline" href="#">Detalles</a>
-          </div>
-        </article>
-      </div>
-    </section>
-
-    <footer class="text-center mt-lg text-muted">
+  <!-- Footer mejorado -->
+  <footer class="site-footer">
+    <div class="footer-cols">
+      <section>
+        <h3>Proyecto</h3>
+        <p class="muted">Gamelist — ejemplo educativo de HTML y CSS.</p>
+      </section>
+      <nav aria-label="Enlaces del footer">
+        <h3>Navegación</h3>
+        <ul>
+          <li><a href="#coleccion">Colección</a></li>
+          <li><a href="#sugerencia">Sugerir juego</a></li>
+          <li><a href="#testimonios">Testimonios</a></li>
+        </ul>
+      </nav>
+      <section>
+        <h3>Contacto</h3>
+        <p class="muted">correo@ejemplo.com</p>
+      </section>
+    </div>
+    <div class="footer-copy">
       <small>© 2025 Gamelist</small>
-    </footer>
-  </body>
+    </div>
+  </footer>
+</body>
 </html>

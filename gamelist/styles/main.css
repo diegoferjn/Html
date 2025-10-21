@@ -1,104 +1,91 @@
-/* Reset simple */
-html, body, h1, h2, h3, p, ul, li { margin: 0; padding: 0; }
-*, *::before, *::after { box-sizing: border-box; }
-body { font-family: Arial, sans-serif; color: #222; background: #f5f7fb; line-height: 1.5; }
+/* ============================================================
+   ORDEN Y MANTENIMIENTO (estructura del CSS con comentarios)
+   Secciones:
+   1) Reset y base tipográfica
+   2) Layout general (header, layout 2 columnas)
+   3) Componentes (cards, badges, botones)
+   4) Bloques de página (sidebar, coleccion, testimonios, footer)
+   5) Formularios (estilos básicos + rating básico)
+   6) Utilidades simples (muted, espaciados mínimos si hace falta)
+   ============================================================ */
 
-/* Sección base y card de ejemplo (para ver utilidades aplicadas) */
-.section { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; }
-.card { background:#fff; border:1px solid #e5e7eb; border-radius:12px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+/* 1) RESET Y BASE TIPOGRÁFICA -------------------------------- */
+html, body, h1, h2, h3, p, ul, li, figure, blockquote { margin:0; padding:0; }
+*, *::before, *::after { box-sizing:border-box; }
+body { font-family: Arial, sans-serif; color:#222; background:#f5f7fb; line-height:1.5; }
+
+/* 2) LAYOUT GENERAL ------------------------------------------ */
+.site-header {
+  display:flex; justify-content:space-between; align-items:center;
+  padding:12px 16px; background:#fff; border-bottom:1px solid #e5e7eb;
+}
+.site-nav a { margin-left:12px; text-decoration:none; color:#222; }
+
+.layout { display:grid; grid-template-columns: 260px 1fr; gap:16px; padding:16px; }
+
+.section {
+  background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px;
+}
+.muted { color:#6b7280; }
+
+/* 3) COMPONENTES --------------------------------------------- */
+/* Cards */
+.cards { display:grid; grid-template-columns:repeat(auto-fit, minmax(260px,1fr)); gap:12px; }
+.card  { background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:12px; box-shadow:0 2px 8px rgba(0,0,0,.06); }
+.card__header { display:flex; justify-content:space-between; align-items:center; margin-bottom:8px; }
+.card__title { font-size:18px; }
+.card__desc  { font-size:14px; color:#333; margin-top:4px; }
+
+/* Badge (plataforma) */
 .badge { display:inline-block; padding:2px 10px; border-radius:999px; background:#0ea5e9; color:#fff; font-size:12px; }
 
-/* Botones usados en cards (para ver helpers alrededor) */
-.btn { display:inline-block; border:1px solid #0ea5e9; background:#0ea5e9; color:#fff; padding:8px 12px; border-radius:10px; text-decoration:none; }
-.btn--outline { background:#fff; color:#0ea5e9; }
+/* Botones básicos */
+.btn { display:inline-block; border:1px solid #0ea5e9; background:#0ea5e9; color:#fff; padding:8px 12px; border-radius:10px; text-decoration:none; cursor:pointer; }
+.btn:hover { box-shadow:0 4px 12px rgba(14,165,233,.25); }
 
-/* ============================
-   UTILIDADES — Texto y color
-   ============================ */
-.text-left   { text-align: left; }
-.text-center { text-align: center; }
-.text-right  { text-align: right; }
-
-.text-muted  { color:#6b7280; }
-.text-brand  { color:#0ea5e9; }
-.text-success{ color:#059669; }
-.text-error  { color:#b91c1c; }
-
-/* ============================
-   UTILIDADES — Espaciado (m=margin, p=padding)
-   Escala: xs=4px, sm=8px, md=16px, lg=24px
-   ============================ */
-.m-0  { margin:0; } .p-0  { padding:0; }
-.mt-xs{ margin-top:4px; }  .pt-xs{ padding-top:4px; }
-.mb-xs{ margin-bottom:4px; }.pb-xs{ padding-bottom:4px; }
-.mt-sm{ margin-top:8px; }  .pt-sm{ padding-top:8px; }
-.mb-sm{ margin-bottom:8px; }.pb-sm{ padding-bottom:8px; }
-.mt-md{ margin-top:16px; } .pt-md{ padding-top:16px; }
-.mb-md{ margin-bottom:16px;}.pb-md{ padding-bottom:16px; }
-.mt-lg{ margin-top:24px; } .pt-lg{ padding-top:24px; }
-.mb-lg{ margin-bottom:24px;}.pb-lg{ padding-bottom:24px; }
-
-.ml-sm{ margin-left:8px; }  .mr-sm{ margin-right:8px; }
-.mx-sm{ margin-left:8px; margin-right:8px; }
-.my-sm{ margin-top:8px; margin-bottom:8px; }
-
-.p-xs{ padding:4px; } .p-sm{ padding:8px; } .p-md{ padding:16px; } .p-lg{ padding:24px; }
-
-/* ============================
-   UTILIDADES — Display
-   ============================ */
-.hidden      { display: none !important; }
-.block       { display: block; }
-.inline      { display: inline; }
-.inline-block{ display: inline-block; }
-.flex        { display: flex; }
-.grid        { display: grid; }
-
-/* ============================
-   UTILIDADES — Flexbox
-   ============================ */
-.flex-row       { flex-direction: row; }
-.flex-col       { flex-direction: column; }
-.flex-wrap      { flex-wrap: wrap; }
-
-.items-start    { align-items: flex-start; }
-.items-center   { align-items: center; }
-.items-end      { align-items: flex-end; }
-
-.justify-start  { justify-content: flex-start; }
-.justify-center { justify-content: center; }
-.justify-between{ justify-content: space-between; }
-.justify-end    { justify-content: flex-end; }
-
-.gap-xs { gap:4px; }
-.gap-sm { gap:8px; }
-.gap-md { gap:16px; }
-
-/* ============================
-   UTILIDADES — Grid
-   ============================ */
-.grid-cols-1 { grid-template-columns: repeat(1, 1fr); }
-.grid-cols-2 { grid-template-columns: repeat(2, 1fr); }
-.grid-cols-3 { grid-template-columns: repeat(3, 1fr); }
-
-/* Grid auto ajustable para cards */
-.grid-cols-auto { grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); }
-
-.gap-0  { gap:0; }
-.gap-2  { gap:8px; }
-.gap-3  { gap:12px; }
-.gap-4  { gap:16px; }
-
-/* ============================
-   UTILIDADES — Tamaño
-   ============================ */
-.w-100 { width: 100%; }
-.w-50  { width: 50%; }
-.max-w-600 { max-width: 600px; }
-.h-100 { height: 100%; }
-
-/* (Pequeño toque responsive si se quiere)
-@media (max-width: 600px){
-  .w-50 { width: 100%; }
+/* 4) BLOQUES DE PÁGINA ---------------------------------------- */
+/* Sidebar */
+.sidebar {
+  background:#fff; border:1px solid #e5e7eb; border-radius:12px; padding:16px; align-self:start;
 }
-*/
+.sidebar h2 { font-size:18px; margin-bottom:8px; }
+.sidebar ul { list-style:none; }
+.sidebar li { margin-bottom:6px; }
+.sidebar a { text-decoration:none; color:#222; }
+
+/* Testimonios */
+.testimonials h2 { margin-bottom:8px; }
+.testimonial {
+  background:#f9fafb; border:1px solid #e5e7eb; border-radius:10px; padding:12px;
+}
+.testimonial p { margin-bottom:6px; }
+
+/* Footer mejorado */
+.site-footer { margin-top:16px; background:#fff; border-top:1px solid #e5e7eb; }
+.footer-cols {
+  display:grid; grid-template-columns: repeat(auto-fit, minmax(220px,1fr));
+  gap:12px; padding:16px;
+}
+.footer-cols h3 { font-size:16px; margin-bottom:6px; }
+.footer-cols ul { list-style:none; }
+.footer-cols li { margin-bottom:4px; }
+.footer-cols a { text-decoration:none; color:#222; }
+.footer-copy { border-top:1px solid #e5e7eb; padding:8px 16px; text-align:center; color:#6b7280; }
+
+/* 5) FORMULARIOS (básico + rating básico) --------------------- */
+label { display:block; font-weight:bold; margin:6px 0 4px; }
+input[type="text"], input[type="email"] {
+  width:100%; padding:10px; border:1px solid #cbd5e1; border-radius:8px; background:#fff; color:#111;
+}
+.rating-form { margin-top:8px; }
+.rating { border:0; margin-top:6px; }
+.rating legend { font-size:14px; margin-bottom:6px; }
+
+/* “Rating básico”: estrellas como texto, tamaño y color base.
+   (Persistencia visual de 1..N estrellas requeriría selectores avanzados no cubiertos) */
+.rating label { display:inline-block; font-size:1.2rem; color:#999; margin-right:6px; cursor:pointer; }
+.rating input:focus { outline:3px solid #0ea5e9; outline-offset:2px; }
+.rating label:hover { color:#f59e0b; }
+
+/* 6) UTILIDADES SENCILLAS ------------------------------------- */
+.text-center { text-align:center; }
